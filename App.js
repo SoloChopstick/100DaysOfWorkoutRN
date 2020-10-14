@@ -24,6 +24,7 @@ import {
 } from "@react-native-community/hooks";
 
 import WelcomeScreen from "./app/screens/WelcomeScreen";
+import ViewImageScreen from "./app/screens/ViewImageScreen";
 
 export default function App() {
   //console.log(Dimensions.get("screen"));
@@ -34,7 +35,8 @@ export default function App() {
   const { landscape } = useDeviceOrientation();
 
   return (
-    <WelcomeScreen />
+    <ViewImageScreen />
+    //<WelcomeScreen />
     //The style on the RIGHT always overwrites the style on the LEFT
     /*
     <View

@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   logoContainer: {
     flex: 1,
     alignItems: "center",
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight + 20 : 20,
   },
   logo: {},
   title: {
@@ -48,12 +48,12 @@ const styles = StyleSheet.create({
   },
   loginButton: {
     width: "100%",
-    height: 70,
+    height: 50,
     backgroundColor: "#fc5c65",
   },
   signupButton: {
     width: "100%",
-    height: 70,
+    height: 50,
     backgroundColor: "#4ecdc4",
   },
 });
