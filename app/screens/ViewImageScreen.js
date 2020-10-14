@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, Platform, StyleSheet, View, StatusBar } from "react-native";
 
+import colors from "../config/colors";
 const ViewImageScreen = () => {
   return (
     <View style={styles.container}>
@@ -21,7 +22,7 @@ const ViewImageScreen = () => {
 
 const styles = StyleSheet.create({
   addButton: {
-    backgroundColor: "#fc5c65",
+    backgroundColor: colors.primary,
     width: 50,
     height: 50,
   },
@@ -32,13 +33,13 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 20,
   },
   deleteButton: {
-    backgroundColor: "#4ecdc4",
+    backgroundColor: colors.secondary,
     width: 50,
     height: 50,
   },
   container: {
     flex: 1,
-    backgroundColor: "black",
+    backgroundColor: colors.black,
   },
   image: {
     width: "100%",
