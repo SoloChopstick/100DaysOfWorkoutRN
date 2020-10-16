@@ -26,6 +26,7 @@ import {
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import AppText from "./app/components/AppText";
+import Card from "./app/components/Card";
 export default function App() {
   //console.log(Dimensions.get("screen"));
   //console.log(useDimensions());
@@ -35,6 +36,16 @@ export default function App() {
   //const { landscape } = useDeviceOrientation();
 
   return (
+    <View style={styles.container}>
+      <Card
+        title="Egg"
+        subTitle="70 calories"
+        quantity="1"
+        image={require("./app/assets/jacket.jpg")}
+      />
+    </View>
+    //<ViewImageScreen />
+    //<WelcomeScreen />
     /*
     <View style={styles.container}>
       <MaterialCommunityIcons name="email" size={200} color="dodgerblue" />
@@ -49,8 +60,6 @@ export default function App() {
       <View style={styles.below}></View>
     </View>
     */
-    //<ViewImageScreen />
-    <WelcomeScreen />
     //The style on the RIGHT always overwrites the style on the LEFT
     /*
     <View
@@ -154,10 +163,9 @@ const containerStyle = { backgroundColor: "orange" };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFF",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    backgroundColor: "grey",
+    padding: 20,
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight + 20 : 20,
   },
   inside: {
     backgroundColor: "dodgerblue",
