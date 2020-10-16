@@ -20,6 +20,7 @@ function WelcomeScreen(props) {
   return (
     <ImageBackground
       style={styles.background}
+      blurRadius={1}
       source={{ uri: "https://picsum.photos/500/1000" }}
     >
       <View style={styles.logoContainer}>
@@ -29,16 +30,22 @@ function WelcomeScreen(props) {
         ></Image>
         <Text style={styles.title}> 100 DAYS OF WORKOUT!</Text>
       </View>
-      <AppButton
-        title="LOG IN"
-        onPress={() => console.log("LOGIN")}
-      ></AppButton>
-      <AppButton
-        title="SIGN UP"
-        onPress={() => console.log("yolo")}
-      ></AppButton>
+      <View style={styles.buttonsContainer}>
+        <AppButton
+          title="LOGIN"
+          color="primary"
+          onPress={() => console.log("LOGIN")}
+        ></AppButton>
+        <AppButton
+          title="SIGN UP"
+          color="secondary"
+          onPress={() => console.log("SIGNUP")}
+        ></AppButton>
+        {/*
       <View style={styles.loginButton}></View>
       <View style={styles.signupButton}></View>
+      */}
+      </View>
     </ImageBackground>
   );
 }
@@ -56,20 +63,12 @@ const styles = StyleSheet.create({
   },
   logo: {},
   title: {
-    color: "white",
+    color: colors.black,
     fontWeight: "bold",
     fontSize: 25,
+    paddingVertical: 20,
   },
-  loginButton: {
-    width: "100%",
-    height: 50,
-    backgroundColor: colors.primary,
-  },
-  signupButton: {
-    width: "100%",
-    height: 50,
-    backgroundColor: colors.secondary,
-  },
+  buttonsContainer: { width: "100%", padding: 25 },
 });
 
 export default WelcomeScreen;
