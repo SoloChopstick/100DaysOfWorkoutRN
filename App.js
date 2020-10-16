@@ -17,7 +17,7 @@ import {
   StatusBar,
   Dimensions,
 } from "react-native";
-
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   useDimensions,
   useDeviceOrientation,
@@ -25,17 +25,29 @@ import {
 
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
-
+import AppText from "./app/components/AppText/AppText";
 export default function App() {
   //console.log(Dimensions.get("screen"));
   //console.log(useDimensions());
 
-  const orientation = useDeviceOrientation();
+  //const orientation = useDeviceOrientation();
   //or
-  const { landscape } = useDeviceOrientation();
+  //const { landscape } = useDeviceOrientation();
 
   return (
-    <ViewImageScreen />
+    <View style={styles.container}>
+      <MaterialCommunityIcons name="email" size={200} color="dodgerblue" />
+      <Text style={styles.textStyles}>
+        I love React Native! This is my first React Native app! Here's some more
+        text
+      </Text>
+      <AppText> I Love React Native!</AppText>
+      <View style={styles.inside}>
+        <View style={styles.insideInside}></View>
+      </View>
+      <View style={styles.below}></View>
+    </View>
+    //<ViewImageScreen />
     //<WelcomeScreen />
     //The style on the RIGHT always overwrites the style on the LEFT
     /*
@@ -140,9 +152,58 @@ const containerStyle = { backgroundColor: "orange" };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    //justifyContent: "center",
+    backgroundColor: "#FFF",
+    justifyContent: "center",
     alignItems: "center",
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+  },
+  inside: {
+    backgroundColor: "dodgerblue",
+    width: 100,
+    height: 100,
+    /*
+    borderWidth: 10,
+    borderColor: "royalblue",
+    borderRadius: 50,
+    borderTopWidth: 20,
+    borderTopLeftRadius: 50,
+    */
+    //IOS
+    shadowColor: "grey",
+    shadowOffset: { height: 10, width: 10 },
+    shadowOpacity: 1,
+    shadowRadius: 10,
+    //ANDROID
+    elevation: 50,
+    //PADDING
+    padding: 20,
+    paddingHorizontal: 10,
+    paddingLeft: 30,
+    margin: 25,
+  },
+  insideInside: {
+    backgroundColor: "gold",
+    width: 50,
+    height: 50,
+    padding: 20,
+  },
+  below: {
+    backgroundColor: "tomato",
+    width: 100,
+    height: 100,
+    //MARGINS
+    margin: 25,
+  },
+  //CAN ONLY CHANGE in TEXT
+  textStyles: {
+    fontSize: 30,
+    //fontFamily: "Roboto",
+    fontStyle: "italic",
+    fontWeight: "bold",
+    color: "tomato",
+    textTransform: "capitalize",
+    textDecorationLine: "underline",
+    textAlign: "justify",
+    lineHeight: 60,
   },
 });
