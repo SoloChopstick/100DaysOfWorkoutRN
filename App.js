@@ -27,6 +27,7 @@ import WelcomeScreen from "./app/screens/WelcomeScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import AppText from "./app/components/AppText";
 import Card from "./app/components/Card";
+import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
 export default function App() {
   //console.log(Dimensions.get("screen"));
   //console.log(useDimensions());
@@ -37,14 +38,27 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <ViewImageScreen />
+      {/*
+      <ListingDetailsScreen
+        title="Egg"
+        subTitle="70 calories"
+        quantity="1"
+        image={require("./app/assets/jacket.jpg")}
+        sellerName="Han"
+        sellerImage={require("./app/assets/mosh.jpg")}
+        sellerRatings="9.9"
+      />
+      */}
+      {/*
       <Card
         title="Egg"
         subTitle="70 calories"
         quantity="1"
         image={require("./app/assets/jacket.jpg")}
       />
+      */}
     </View>
-    //<ViewImageScreen />
     //<WelcomeScreen />
     /*
     <View style={styles.container}>
@@ -164,8 +178,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "grey",
-    padding: 20,
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight + 20 : 20,
+    //padding: 20,
+    //paddingTop: Platform.OS === "android" ? StatusBar.currentHeight + 20 : 20,
   },
   inside: {
     backgroundColor: "dodgerblue",
