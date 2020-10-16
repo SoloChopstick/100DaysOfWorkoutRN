@@ -3,15 +3,20 @@ import {
   ImageBackground,
   StyleSheet,
   View,
-  Button,
   Image,
   Text,
   Platform,
   StatusBar,
 } from "react-native";
 
+import AppButton from "../components/AppButton";
 import colors from "../config/colors";
 function WelcomeScreen(props) {
+  /*
+  onPress = () => {
+    console.log("tapped");
+  };
+  */
   return (
     <ImageBackground
       style={styles.background}
@@ -24,6 +29,14 @@ function WelcomeScreen(props) {
         ></Image>
         <Text style={styles.title}> 100 DAYS OF WORKOUT!</Text>
       </View>
+      <AppButton
+        title="LOG IN"
+        onPress={() => console.log("LOGIN")}
+      ></AppButton>
+      <AppButton
+        title="SIGN UP"
+        onPress={() => console.log("yolo")}
+      ></AppButton>
       <View style={styles.loginButton}></View>
       <View style={styles.signupButton}></View>
     </ImageBackground>

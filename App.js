@@ -25,7 +25,7 @@ import {
 
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
-import AppText from "./app/components/AppText/AppText";
+import AppText from "./app/components/AppText";
 export default function App() {
   //console.log(Dimensions.get("screen"));
   //console.log(useDimensions());
@@ -35,6 +35,7 @@ export default function App() {
   //const { landscape } = useDeviceOrientation();
 
   return (
+    /*
     <View style={styles.container}>
       <MaterialCommunityIcons name="email" size={200} color="dodgerblue" />
       <Text style={styles.textStyles}>
@@ -47,8 +48,9 @@ export default function App() {
       </View>
       <View style={styles.below}></View>
     </View>
+    */
     //<ViewImageScreen />
-    //<WelcomeScreen />
+    <WelcomeScreen />
     //The style on the RIGHT always overwrites the style on the LEFT
     /*
     <View
