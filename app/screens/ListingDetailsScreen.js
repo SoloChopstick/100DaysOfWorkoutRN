@@ -1,6 +1,8 @@
 import React from "react";
 import { View, StyleSheet, Image } from "react-native";
 import AppText from "../components/AppText";
+import colors from "../config/colors";
+import ListItem from "../components/ListItem";
 function ListingDetailsScreen({
   title,
   subTitle,
@@ -13,16 +15,16 @@ function ListingDetailsScreen({
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={image}></Image>
-      <View>
+      <View style={styles.detailsContainer}>
         <AppText style={styles.title}> {title} </AppText>
-        <AppText style={styles.subTitle}>{`${quantity} x ${subTitle}`}</AppText>
+        <AppText style={styles.price}>{`${quantity} x ${subTitle}`}</AppText>
       </View>
-      <View style={styles.sellerContainer}>
-        <Image style={styles.sellerImage} source={sellerImage}></Image>
-        <View>
-          <AppText style={styles.title}> {sellerName} </AppText>
-          <AppText style={styles.subTitle}> {sellerRatings} </AppText>
-        </View>
+      <View style={styles.userContainer}>
+        <ListItem
+          image={require("../assets/mosh.jpg")}
+          title="Han Solo"
+          subTitle="5 Listings"
+        ></ListItem>
       </View>
     </View>
   );
@@ -36,23 +38,16 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 200,
   },
-  sellerImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    overflow: "hidden",
-  },
   title: {
-    padding: 10,
     fontWeight: "bold",
   },
-  subTitle: {
-    padding: 10,
+  price: {
+    color: colors.secondary,
+    fontWeight: "bold",
+    marginVertical: 10,
   },
-  sellerContainer: {
-    padding: 25,
-    flex: 1,
-    flexDirection: "row",
+  userContainer: {
+    marginVertical: 40,
   },
 });
 

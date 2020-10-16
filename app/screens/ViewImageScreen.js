@@ -1,13 +1,25 @@
 import React from "react";
-import { Image, Platform, StyleSheet, View, StatusBar } from "react-native";
+import {
+  Image,
+  Platform,
+  StyleSheet,
+  View,
+  StatusBar,
+  icon,
+} from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../config/colors";
 const ViewImageScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
-        <View style={styles.addButton}></View>
-        <View style={styles.deleteButton}></View>
+        <MaterialCommunityIcons name="close" color={colors.white} size={35} />
+        <MaterialCommunityIcons
+          name="trash-can-outline"
+          color={colors.white}
+          size={35}
+        />
       </View>
       <Image
         resizeMode="contain"
@@ -27,7 +39,6 @@ const styles = StyleSheet.create({
     height: 50,
   },
   buttonContainer: {
-    flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 20,

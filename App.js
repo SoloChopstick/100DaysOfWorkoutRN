@@ -59,6 +59,7 @@ export default function App() {
       />
       */}
     </View>
+    //<ViewImageScreen />
     //<WelcomeScreen />
     /*
     <View style={styles.container}>
