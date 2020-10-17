@@ -38,6 +38,7 @@ import ListingsScreen from "./app/screens/ListingsScreen";
 import colors from "./app/config/colors";
 import AppTextInput from "./app/components/AppTextInput";
 import AppPicker from "./app/components/AppPicker";
+import LoginScreen from "./app/screens/LoginScreen";
 
 const categories = [
   { label: "Furniture", value: 1 },
@@ -55,6 +56,8 @@ export default function App() {
   const [isNew, setIsNew] = useState(false);
   const [category, setCategory] = useState();
   return (
+    <LoginScreen />
+    /*
     <Screen>
       <AppTextInput icon="email" placeholder="Email"></AppTextInput>
       <AppPicker
@@ -65,6 +68,7 @@ export default function App() {
         placeholder="Category"
       ></AppPicker>
     </Screen>
+    */
     /*
 
     <Switch
