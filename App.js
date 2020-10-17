@@ -17,6 +17,7 @@ import {
   StatusBar,
   Dimensions,
   TextInput,
+  Switch,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
@@ -36,6 +37,7 @@ import ListingsScreen from "./app/screens/ListingsScreen";
 
 import colors from "./app/config/colors";
 import AppTextInput from "./app/components/AppTextInput";
+import AppPicker from "./app/components/AppPicker";
 
 export default function App() {
   //console.log(Dimensions.get("screen"));
@@ -45,11 +47,19 @@ export default function App() {
   //or
   //const { landscape } = useDeviceOrientation();
   const [firstName, setFirstName] = useState("");
+  const [isNew, setIsNew] = useState(false);
   return (
     <Screen>
       <AppTextInput icon="email" placeholder="Email"></AppTextInput>
+      <AppPicker icon="apps" placeholder="Category"></AppPicker>
     </Screen>
     /*
+
+    <Switch
+      value={isNew}
+      onValueChange={(newValue) => setIsNew(newValue)}
+    ></Switch>
+
     <Screen>
       <Text>{firstName}</Text>
       <TextInput
