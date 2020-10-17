@@ -3,63 +3,84 @@ import { StyleSheet, View, Image } from "react-native";
 import AppText from "../components/AppText";
 import Screen from "../components/Screen";
 import ListItem from "../components/ListItem";
-import { Header } from "react-native/Libraries/NewAppScreen";
 import { FlatList } from "react-native-gesture-handler";
 import colors from "../config/colors";
 import Icon from "../components/Icon";
+import ListItemSeparator from "../components/ListItemSeparator";
 
-const data = [
-  { name: "My Listings" },
+const menuItems = [
   {
-    name: "My Account",
+    title: "My Listings",
+    icon: {
+      name: "format-list-bulleted",
+      backgroundColor: colors.primary,
+    },
+  },
+  {
+    title: "My Account",
+    icon: {
+      name: "email",
+      backgroundColor: colors.secondary,
+    },
+  },
+  {
+    title: "About",
+    icon: {
+      name: "information-variant",
+      backgroundColor: "blue",
+    },
+  },
+  {
+    title: "Delete Account",
+    icon: {
+      name: "delete",
+      backgroundColor: "red",
+    },
   },
 ];
+
 function MyAccountScreen(props) {
   return (
-    <Screen>
-      <View style={styles.header}>
+    <Screen style={styles.screen}>
+      <View style={styles.container}>
         <ListItem
           title="Han Solo"
-          description="hanw.xie@gmai.com"
+          description="hanw.xie@gmail.com"
           image={require("../assets/mosh.jpg")}
         ></ListItem>
       </View>
-      <Icon
-        name="format-list-bulleted"
-        backgroundColor={colors.primary}
-        color={colors.white}
-        size={35}
-      ></Icon>
-      <View style={styles.list}>
+      <View style={styles.container}>
         <FlatList
-          data={data}
-          keyExtractor={(item) => item.name.toString()}
+          data={menuItems}
+          keyExtractor={(item) => item.title}
           renderItem={({ item }) => (
-            <ListItem title={item.name} image={require("../assets/mosh.jpg")}>
-              {" "}
-            </ListItem>
+            <ListItem
+              title={item.title}
+              IconComponent={
+                <Icon
+                  name={item.icon.name}
+                  backgroundColor={item.icon.backgroundColor}
+                />
+              }
+            ></ListItem>
           )}
+          ItemSeparatorComponent={ListItemSeparator}
         ></FlatList>
       </View>
-      <View style={styles.footer}>
+      <View style={styles.container}>
         <ListItem
           title="Log Out"
-          image={require("../assets/mosh.jpg")}
+          IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
         ></ListItem>
       </View>
     </Screen>
   );
 }
 const styles = StyleSheet.create({
-  header: {
-    marginBottom: 25,
-    backgroundColor: colors.light,
+  container: {
+    marginVertical: 20,
   },
-  list: {
-    marginBottom: 25,
-    backgroundColor: colors.light,
-  },
-  footer: {
+  screen: {
     backgroundColor: colors.light,
   },
 });
