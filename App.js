@@ -39,6 +39,11 @@ import colors from "./app/config/colors";
 import AppTextInput from "./app/components/AppTextInput";
 import AppPicker from "./app/components/AppPicker";
 
+const categories = [
+  { label: "Furniture", value: 1 },
+  { label: "Clothing", value: 2 },
+  { label: "Cameras", value: 3 },
+];
 export default function App() {
   //console.log(Dimensions.get("screen"));
   //console.log(useDimensions());
@@ -48,10 +53,17 @@ export default function App() {
   //const { landscape } = useDeviceOrientation();
   const [firstName, setFirstName] = useState("");
   const [isNew, setIsNew] = useState(false);
+  const [category, setCategory] = useState();
   return (
     <Screen>
       <AppTextInput icon="email" placeholder="Email"></AppTextInput>
-      <AppPicker icon="apps" placeholder="Category"></AppPicker>
+      <AppPicker
+        selectedItem={category}
+        onSelectItem={(item) => setCategory(item)}
+        items={categories}
+        icon="apps"
+        placeholder="Category"
+      ></AppPicker>
     </Screen>
     /*
 
