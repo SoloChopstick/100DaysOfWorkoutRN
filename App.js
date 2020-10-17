@@ -29,6 +29,7 @@ import AppText from "./app/components/AppText";
 import Card from "./app/components/Card";
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
 import MessagesScreen from "./app/screens/MessagesScreen";
+import colors from "./app/config/colors";
 export default function App() {
   //console.log(Dimensions.get("screen"));
   //console.log(useDimensions());
@@ -179,7 +180,7 @@ const containerStyle = { backgroundColor: "orange" };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "grey",
+    backgroundColor: colors.white,
     //padding: 20,
     //paddingTop: Platform.OS === "android" ? StatusBar.currentHeight + 20 : 20,
   },
