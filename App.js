@@ -1,5 +1,5 @@
 //import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -16,6 +16,7 @@ import {
   Platform,
   StatusBar,
   Dimensions,
+  TextInput,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
@@ -27,13 +28,14 @@ import WelcomeScreen from "./app/screens/WelcomeScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import AppText from "./app/components/AppText";
 import Card from "./app/components/Card";
-
+import Screen from "./app/components/Screen";
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
 import MessagesScreen from "./app/screens/MessagesScreen";
 import MyAccountScreen from "./app/screens/MyAccountScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
 
 import colors from "./app/config/colors";
+import AppTextInput from "./app/components/AppTextInput";
 
 export default function App() {
   //console.log(Dimensions.get("screen"));
@@ -42,11 +44,28 @@ export default function App() {
   //const orientation = useDeviceOrientation();
   //or
   //const { landscape } = useDeviceOrientation();
-
+  const [firstName, setFirstName] = useState("");
   return (
-    <View style={styles.container}>
-      <ListingsScreen />
-      {/*
+    <Screen>
+      <AppTextInput icon="email" placeholder="Email"></AppTextInput>
+    </Screen>
+    /*
+    <Screen>
+      <Text>{firstName}</Text>
+      <TextInput
+        keyboardType="decimal-pad"
+        clearButtonMode="always"
+        secureTextEntry
+        onChangeText={(text) => setFirstName(text)}
+        placeholder="First Name"
+        style={{
+          borderBottomColor: "#ccc",
+          borderBottomWidth: 1,
+        }}
+      />
+    </Screen>
+    */
+    /*
       <ListingDetailsScreen
         title="Egg"
         subTitle="70 calories"
@@ -56,16 +75,16 @@ export default function App() {
         sellerImage={require("./app/assets/mosh.jpg")}
         sellerRatings="9.9"
       />
-      */}
-      {/*
+      */
+    /*
       <Card
         title="Egg"
         subTitle="70 calories"
         quantity="1"
         image={require("./app/assets/jacket.jpg")}
       />
-      */}
-    </View>
+      */
+    //<ListingsScreen />
     //<MyAccountScreen />
     //<MessagesScreen />
     //<ViewImageScreen />
