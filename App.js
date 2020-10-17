@@ -28,6 +28,7 @@ import ViewImageScreen from "./app/screens/ViewImageScreen";
 import AppText from "./app/components/AppText";
 import Card from "./app/components/Card";
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
+import MessagesScreen from "./app/screens/MessagesScreen";
 export default function App() {
   //console.log(Dimensions.get("screen"));
   //console.log(useDimensions());
@@ -38,7 +39,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <ViewImageScreen />
+      <MessagesScreen />
       {/*
       <ListingDetailsScreen
         title="Egg"

@@ -23,7 +23,7 @@ function ListingDetailsScreen({
         <ListItem
           image={require("../assets/mosh.jpg")}
           title="Han Solo"
-          subTitle="5 Listings"
+          description="5 Listings"
         ></ListItem>
       </View>
     </View>

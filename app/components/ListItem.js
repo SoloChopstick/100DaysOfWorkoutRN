@@ -2,13 +2,13 @@ import React from "react";
 import { StyleSheet, View, Image } from "react-native";
 import colors from "../config/colors";
 import AppText from "./AppText";
-function ListItem({ title, subTitle, image }) {
+function ListItem({ title, description, image }) {
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={image}></Image>
       <View style={styles.detailsContainer}>
         <AppText style={styles.title}> {title} </AppText>
-        <AppText style={styles.subTitle}> {subTitle} </AppText>
+        <AppText style={styles.description}> {description} </AppText>
       </View>
     </View>
   );
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   title: { fontWeight: "bold" },
-  subTitle: { color: colors.medium },
+  description: { color: colors.medium },
   detailsContainer: {},
 });
 export default ListItem;
