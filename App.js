@@ -27,10 +27,14 @@ import WelcomeScreen from "./app/screens/WelcomeScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import AppText from "./app/components/AppText";
 import Card from "./app/components/Card";
+
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
 import MessagesScreen from "./app/screens/MessagesScreen";
 import MyAccountScreen from "./app/screens/MyAccountScreen";
+import ListingsScreen from "./app/screens/ListingsScreen";
+
 import colors from "./app/config/colors";
+
 export default function App() {
   //console.log(Dimensions.get("screen"));
   //console.log(useDimensions());
@@ -41,7 +45,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <MyAccountScreen />
+      <ListingsScreen />
       {/*
       <ListingDetailsScreen
         title="Egg"
@@ -62,6 +66,7 @@ export default function App() {
       />
       */}
     </View>
+    //<MyAccountScreen />
     //<MessagesScreen />
     //<ViewImageScreen />
     //<WelcomeScreen />
