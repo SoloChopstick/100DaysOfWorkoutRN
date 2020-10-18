@@ -10,6 +10,7 @@ import AppTextInput from "../components/AppTextInput";
 import ErrorMessage from "../components/ErrorMessage";
 import Screen from "../components/Screen";
 import AppFormField from "../components/AppFormField";
+import SubmitButton from "../components/SubmitButton";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required().email().label("Username"),
@@ -45,7 +46,7 @@ function LoginScreen({}) {
               secureTextEntry={true}
               textContentType="password"
             ></AppFormField>
-            <AppButton title="login" onPress={handleSubmit}></AppButton>
+            <SubmitButton title="Login" />
           </>
         )}
       </Formik>
