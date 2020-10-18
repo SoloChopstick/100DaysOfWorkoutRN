@@ -4,15 +4,7 @@ import AppText from "../components/AppText";
 import colors from "../config/colors";
 import ListItem from "../components/ListItem";
 
-function ListingDetailsScreen({
-  title,
-  subTitle,
-  quantity,
-  image,
-  sellerName,
-  sellerImage,
-  sellerRatings,
-}) {
+function ListingDetailsScreen({ title, subTitle, quantity, image }) {
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={image}></Image>

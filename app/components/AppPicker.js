@@ -8,7 +8,7 @@ import {
   Button,
   FlatList,
 } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 import AppText from "./AppText";
 import Icon from "./Icon";
@@ -16,11 +16,13 @@ import Screen from "./Screen";
 import defaultStyles from "../config/styles";
 import ListItem from "./ListItem";
 import PickerItem from "./PickerItem";
-
+import CategoryPickerItem from "./CategoryPickerItem";
 function AppPicker({
   icon,
   items,
+  numberOfColumns = 1,
   onSelectItem,
+  PickerItemComponent = PickerItem,
   placeholder,
   selectedItem,
   ...otherProps
@@ -31,7 +33,7 @@ function AppPicker({
       <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
         <View style={styles.container}>
           {icon && (
-            <MaterialCommunityIcons
+            <FontAwesome5
               name={icon}
               size={20}
               color={defaultStyles.colors.medium}
@@ -41,7 +43,7 @@ function AppPicker({
           <AppText style={styles.text}>
             {selectedItem ? selectedItem.label : placeholder}
           </AppText>
-          <MaterialCommunityIcons
+          <FontAwesome5
             name="chevron-down"
             size={20}
             color={defaultStyles.colors.medium}
@@ -53,14 +55,15 @@ function AppPicker({
         <FlatList
           data={items}
           keyExtractor={(item) => item.value.toString()}
+          numColumns={numberOfColumns}
           renderItem={({ item }) => (
-            <PickerItem
-              label={item.label}
+            <PickerItemComponent
+              item={item}
               onPress={() => {
                 setModalVisible(false);
                 onSelectItem(item);
               }}
-            ></PickerItem>
+            ></PickerItemComponent>
           )}
         />
       </Modal>

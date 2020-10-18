@@ -35,16 +35,57 @@ import MessagesScreen from "./app/screens/MessagesScreen";
 import MyAccountScreen from "./app/screens/MyAccountScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
 import RegisterScreen from "./app/screens/RegisterScreen";
-
+import CategoryPickerItem from "./app/components/CategoryPickerItem";
 import colors from "./app/config/colors";
 import AppTextInput from "./app/components/AppTextInput";
 import AppPicker from "./app/components/AppPicker";
 import LoginScreen from "./app/screens/LoginScreen";
-
 const categories = [
-  { label: "Furniture", value: 1 },
-  { label: "Clothing", value: 2 },
-  { label: "Cameras", value: 3 },
+  {
+    label: "Veggies",
+    value: 1,
+    icon: { name: "seedling", backgroundColor: "#26de81" },
+  },
+  {
+    label: "Meat",
+    value: 2,
+    icon: { name: "drumstick-bite", backgroundColor: "#fc5c65" },
+  },
+  {
+    label: "Fish",
+    value: 3,
+    icon: { name: "fish", backgroundColor: "#4b7bec" },
+  },
+  {
+    label: "Fruits",
+    value: 4,
+    icon: { name: "lemon", backgroundColor: "#fd9644" },
+  },
+  {
+    label: "Grains",
+    value: 5,
+    icon: { name: "bread-slice", backgroundColor: "#fed330" },
+  },
+  {
+    label: "Dairy",
+    value: 6,
+    icon: { name: "cheese", backgroundColor: "#2bcbba" },
+  },
+  {
+    label: "Drinks",
+    value: 7,
+    icon: { name: "beer", backgroundColor: "#45aaf2" },
+  },
+  {
+    label: "Eggs",
+    value: 8,
+    icon: { name: "egg", backgroundColor: "#45aaf2" },
+  },
+  {
+    label: "Other",
+    value: 9,
+    icon: { name: "question-circle", backgroundColor: "#45aaf2" },
+  },
 ];
 export default function App() {
   //console.log(Dimensions.get("screen"));
@@ -57,19 +98,14 @@ export default function App() {
   const [isNew, setIsNew] = useState(false);
   const [category, setCategory] = useState();
   return (
-    <MyAccountScreen />
-    /*
-    <Screen>
-      <AppTextInput icon="email" placeholder="Email"></AppTextInput>
-      <AppPicker
-        selectedItem={category}
-        onSelectItem={(item) => setCategory(item)}
-        items={categories}
-        icon="apps"
-        placeholder="Category"
-      ></AppPicker>
-    </Screen>
-    */
+    <AppPicker
+      icon="bars"
+      items={categories}
+      numberOfColumns="3"
+      onSelectItem={(item) => setCategory(item)}
+      selectedItem={category}
+      PickerItemComponent={CategoryPickerItem}
+    ></AppPicker>
     /*
 
     <Switch
