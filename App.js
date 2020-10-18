@@ -34,6 +34,7 @@ import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
 import MessagesScreen from "./app/screens/MessagesScreen";
 import MyAccountScreen from "./app/screens/MyAccountScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
+import RegisterScreen from "./app/screens/RegisterScreen";
 
 import colors from "./app/config/colors";
 import AppTextInput from "./app/components/AppTextInput";
@@ -56,7 +57,7 @@ export default function App() {
   const [isNew, setIsNew] = useState(false);
   const [category, setCategory] = useState();
   return (
-    <LoginScreen />
+    <RegisterScreen />
     /*
     <Screen>
       <AppTextInput icon="email" placeholder="Email"></AppTextInput>
