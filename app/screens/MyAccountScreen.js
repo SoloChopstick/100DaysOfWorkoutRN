@@ -19,21 +19,21 @@ const menuItems = [
   {
     title: "My Account",
     icon: {
-      name: "email",
+      name: "user-alt",
       backgroundColor: colors.secondary,
     },
   },
   {
     title: "About",
     icon: {
-      name: "information-variant",
+      name: "info",
       backgroundColor: "blue",
     },
   },
   {
     title: "Delete Account",
     icon: {
-      name: "delete",
+      name: "trash-alt",
       backgroundColor: "red",
     },
   },

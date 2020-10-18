@@ -8,15 +8,62 @@ import {
   Platform,
   StatusBar,
 } from "react-native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+import LoginScreen from "./LoginScreen";
+import RegisterScreen from "./RegisterScreen";
 
 import AppButton from "../components/AppButton";
+
 import colors from "../config/colors";
-function WelcomeScreen(props) {
-  /*
-  onPress = () => {
-    console.log("tapped");
-  };
-  */
+import defaultStyle from "../config/styles";
+
+/* --- STACK NAVIGATOR --- */
+const Stack = createStackNavigator();
+export const WelcomeNavigator = () => (
+  <Stack.Navigator
+    initialRouteName="WelcomeScreen"
+    screenOptions={{
+      headerStyle: { backgroundColor: defaultStyle.colors.primary },
+      headerTintColor: defaultStyle.colors.white,
+      headerShown: true,
+      headerTitleAlign: "center",
+      title: "100DaysOfWorkout",
+    }}
+  >
+    <Stack.Screen
+      name="WelcomeScreen"
+      options={{ headerShown: false }}
+      component={WelcomeScreen}
+    />
+    <Stack.Screen
+      name="LoginScreen"
+      options={{
+        headerShown: true,
+        title: "Log In",
+      }}
+      component={LoginScreen}
+    />
+    <Stack.Screen
+      name="RegisterScreen"
+      options={{
+        headerShown: true,
+        title: "Create Account",
+      }}
+      component={RegisterScreen}
+    />
+
+    {/*    <Stack.Screen
+      component={TweetDetails}
+      name="TweetDetails"
+      options={({ route }) => ({ title: route.params.id })}
+/>*/}
+  </Stack.Navigator>
+);
+/* --- STACK NAVIGATOR --- */
+
+function WelcomeScreen({ navigation }) {
   return (
     <ImageBackground
       style={styles.background}
@@ -34,17 +81,13 @@ function WelcomeScreen(props) {
         <AppButton
           title="LOGIN"
           color="primary"
-          onPress={() => console.log("LOGIN")}
+          onPress={() => navigation.navigate("LoginScreen")}
         ></AppButton>
         <AppButton
           title="SIGN UP"
           color="secondary"
-          onPress={() => console.log("SIGNUP")}
+          onPress={() => navigation.navigate("RegisterScreen")}
         ></AppButton>
-        {/*
-      <View style={styles.loginButton}></View>
-      <View style={styles.signupButton}></View>
-      */}
       </View>
     </ImageBackground>
   );

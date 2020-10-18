@@ -1,5 +1,5 @@
 //import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -19,27 +19,38 @@ import {
   TextInput,
   Switch,
 } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
 import {
   useDimensions,
   useDeviceOrientation,
 } from "@react-native-community/hooks";
 
-import WelcomeScreen from "./app/screens/WelcomeScreen";
-import ViewImageScreen from "./app/screens/ViewImageScreen";
-import AppText from "./app/components/AppText";
-import Card from "./app/components/Card";
-import Screen from "./app/components/Screen";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+import * as ImagePicker from "expo-image-picker";
+import * as Permissions from "expo-permissions";
+
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
+import ListingsScreen from "./app/screens/ListingsScreen";
+import LoginScreen from "./app/screens/LoginScreen";
 import MessagesScreen from "./app/screens/MessagesScreen";
 import MyAccountScreen from "./app/screens/MyAccountScreen";
-import ListingsScreen from "./app/screens/ListingsScreen";
 import RegisterScreen from "./app/screens/RegisterScreen";
-import CategoryPickerItem from "./app/components/CategoryPickerItem";
-import colors from "./app/config/colors";
-import AppTextInput from "./app/components/AppTextInput";
+import ViewImageScreen from "./app/screens/ViewImageScreen";
+import WelcomeScreen, { WelcomeNavigator } from "./app/screens/WelcomeScreen";
+
 import AppPicker from "./app/components/AppPicker";
-import LoginScreen from "./app/screens/LoginScreen";
+import AppText from "./app/components/AppText";
+import AppTextInput from "./app/components/AppTextInput";
+import CategoryPickerItem from "./app/components/CategoryPickerItem";
+import Card from "./app/components/Card";
+import Screen from "./app/components/Screen";
+
+import colors from "./app/config/colors";
+import defaultStyles from "./app/config/styles";
+
 const categories = [
   {
     label: "Veggies",
@@ -87,6 +98,113 @@ const categories = [
     icon: { name: "question-circle", backgroundColor: "#45aaf2" },
   },
 ];
+
+const Link = () => {
+  const navigation = useNavigation();
+  return (
+    <Button
+      title="Click"
+      onPress={() => navigation.navigate("TweetDetails", { id: 1 })}
+    />
+  );
+};
+
+const Tweets = ({ navigation }) => (
+  <Screen>
+    <Text> Tweets</Text>
+    <Button
+      title="View Tweet"
+      onPress={() => navigation.navigate("TweetDetails")}
+    />
+    <Link />
+  </Screen>
+);
+
+const TweetDetails = ({ route }) => (
+  <Screen>
+    <Text> TweetDetails {route.params.id} </Text>
+  </Screen>
+);
+
+const Account = () => (
+  <Screen>
+    <Text>Account</Text>
+  </Screen>
+);
+
+const Stack = createStackNavigator();
+const StackNavigator = () => (
+  <Stack.Navigator
+    initialRouteName="Tweets"
+    screenOptions={{
+      headerStyle: { backgroundColor: "dodgerblue" },
+      headerTintColor: "white",
+      headerShown: true,
+      title: "YOLO",
+      headerTitleAlign: "center",
+    }}
+  >
+    <Stack.Screen
+      name="Tweets"
+      options={{
+        headerStyle: { backgroundColor: "tomato" },
+        headerTintColor: "white",
+        headerShown: true,
+        title: "YOLO",
+        headerTitleAlign: "center",
+      }}
+      component={Tweets}
+    />
+    <Stack.Screen
+      component={TweetDetails}
+      name="TweetDetails"
+      options={({ route }) => ({ title: route.params.id })}
+    />
+  </Stack.Navigator>
+);
+
+/* --- TAB NAVIGATOR --- */
+const Tab = createBottomTabNavigator();
+const TabNavigator = () => (
+  <Tab.Navigator
+    tabBarOptions={{
+      activeBackgroundColor: defaultStyles.colors.primary,
+      activeTintColor: "white",
+      inactiveBackgroundColor: "#eee",
+      inactiveTintColor: "black",
+    }}
+  >
+    <Tab.Screen
+      name="Home"
+      component={WelcomeNavigator}
+      options={{
+        tabBarIcon: ({ size, color }) => (
+          <FontAwesome5 name="home" size={size} color={color} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Add Meal"
+      component={LoginScreen}
+      options={{
+        tabBarIcon: ({ size, color }) => (
+          <FontAwesome5 name="plus" size={size} color={color} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Account"
+      component={MyAccountScreen}
+      options={{
+        tabBarIcon: ({ size, color }) => (
+          <FontAwesome5 name="user-alt" size={size} color={color} />
+        ),
+      }}
+    />
+  </Tab.Navigator>
+);
+/* --- TAB NAVIGATOR --- */
+
 export default function App() {
   //console.log(Dimensions.get("screen"));
   //console.log(useDimensions());
@@ -97,7 +215,43 @@ export default function App() {
   const [firstName, setFirstName] = useState("");
   const [isNew, setIsNew] = useState(false);
   const [category, setCategory] = useState();
+
+  const requestPermission = async () => {
+    /*
+    const result = await Permissions.askAsync(Permissions.CAMERA_ROLL, Permissions.CAMERA)
+    if (!result.granted)
+    */
+    const result = await ImagePicker.requestCameraRollPermissionsAsync();
+    if (!result.granted)
+      alert("You need to enable permission to access the library.");
+  };
+  //just like componentDitMount, b/c [] states will only run once
+  useEffect(() => {
+    requestPermission();
+  }, []);
+
+  const [imageUri, setImageUri] = useState();
+  const selectImage = async () => {
+    try {
+      const result = await ImagePicker.launchCameraAsync();
+      if (!result.cancelled) {
+        setImageUri(result.uri);
+      }
+    } catch (error) {
+      console.log("Error reading an image", error);
+    }
+  };
   return (
+    <NavigationContainer>
+      <TabNavigator />
+    </NavigationContainer>
+    /*
+    <Screen>
+      <Button title="Select Image" onPress={selectImage} />
+      <Image source={{ uri: imageUri }} width={200} height={200} />
+    </Screen>
+    */
+    /*
     <AppPicker
       icon="bars"
       items={categories}
@@ -106,6 +260,7 @@ export default function App() {
       selectedItem={category}
       PickerItemComponent={CategoryPickerItem}
     ></AppPicker>
+    */
     /*
 
     <Switch

@@ -1,7 +1,8 @@
-import { Formik } from "formik";
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet } from "react-native";
+
 import * as Yup from "yup";
+
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import Screen from "../components/Screen";
 
@@ -18,7 +19,7 @@ const validationSchema = Yup.object().shape({
 
 function RegisterScreen(props) {
   return (
-    <Screen>
+    <Screen style={styles.container}>
       <Image style={styles.logo} source={require("../assets/logo.png")} />
       <AppForm
         initialValues={{
@@ -90,11 +91,8 @@ const styles = StyleSheet.create({
   logo: {
     width: 100,
     height: 100,
-    marginTop: 50,
+    marginTop: 25,
     alignSelf: "center",
-  },
-  name: {
-    flexDirection: "row",
   },
 });
 
