@@ -57,7 +57,7 @@ export default function App() {
   const [isNew, setIsNew] = useState(false);
   const [category, setCategory] = useState();
   return (
-    <RegisterScreen />
+    <MyAccountScreen />
     /*
     <Screen>
       <AppTextInput icon="email" placeholder="Email"></AppTextInput>

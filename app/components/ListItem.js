@@ -8,6 +8,7 @@ function ListItem({
   title,
   description,
   image,
+  ChevronComponent,
   IconComponent,
   onPress,
   renderRightActions,
@@ -24,6 +25,7 @@ function ListItem({
               <AppText style={styles.description}> {description} </AppText>
             )}
           </View>
+          {ChevronComponent}
         </View>
       </TouchableHighlight>
     </Swipeable>
@@ -46,6 +48,7 @@ const styles = StyleSheet.create({
   detailsContainer: {
     marginLeft: 10,
     justifyContent: "center",
+    flex: 1,
   },
 });
 export default ListItem;

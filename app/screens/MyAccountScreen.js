@@ -62,6 +62,12 @@ function MyAccountScreen(props) {
                   backgroundColor={item.icon.backgroundColor}
                 />
               }
+              ChevronComponent={
+                <Icon
+                  name="chevron-right"
+                  backgroundColor={item.icon.backgroundColor}
+                />
+              }
             ></ListItem>
           )}
           ItemSeparatorComponent={ListItemSeparator}

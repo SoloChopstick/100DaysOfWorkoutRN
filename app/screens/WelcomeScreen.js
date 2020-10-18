@@ -26,7 +26,7 @@ function WelcomeScreen(props) {
       <View style={styles.logoContainer}>
         <Image
           style={styles.logo}
-          source={require("../assets/favicon.png")}
+          source={require("../assets/logo.png")}
         ></Image>
         <Text style={styles.title}> 100 DAYS OF WORKOUT!</Text>
       </View>
@@ -61,9 +61,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight + 20 : 20,
   },
-  logo: {},
+  logo: {
+    height: 100,
+    width: 100,
+  },
   title: {
-    color: colors.black,
+    color: colors.primary,
     fontWeight: "bold",
     fontSize: 25,
     paddingVertical: 20,
