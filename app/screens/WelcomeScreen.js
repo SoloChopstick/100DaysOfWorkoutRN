@@ -68,7 +68,7 @@ function WelcomeScreen({ navigation }) {
     <ImageBackground
       style={styles.background}
       blurRadius={1}
-      source={{ uri: "https://picsum.photos/500/1000" }}
+      source={require("../assets/background.jpg")}
     >
       <View style={styles.logoContainer}>
         <Image

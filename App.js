@@ -48,6 +48,7 @@ import AppText from "./app/components/AppText";
 import AppTextInput from "./app/components/AppTextInput";
 import CategoryPickerItem from "./app/components/CategoryPickerItem";
 import Card from "./app/components/Card";
+import ProfileImage from "./app/components/ProfileImage";
 import Screen from "./app/components/Screen";
 
 import colors from "./app/config/colors";
@@ -217,7 +218,8 @@ const TabNavigator = () => (
       component={MyAccountScreen}
       options={{
         tabBarIcon: ({ size, color }) => (
-          <FontAwesome5 name="user-alt" size={size} color={color} />
+          //<FontAwesome5 name="user-alt" size={size} color={color} />
+          <ProfileImage image={require("./app/assets/Han.jpg")} size={size} />
         ),
       }}
     />
