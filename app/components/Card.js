@@ -8,7 +8,7 @@ function Cart({ title, subTitle, quantity, image }) {
       <Image style={styles.image} source={image}></Image>
       <View style={styles.textContainer}>
         <AppText style={styles.title}> {title} </AppText>
-        <AppText style={styles.subTitle}> {quantity + "x" + subTitle} </AppText>
+        <AppText style={styles.subTitle}> {subTitle} </AppText>
       </View>
     </View>
   );

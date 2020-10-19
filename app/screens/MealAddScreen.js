@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Screen } from "react-native-screens";
-
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import * as Yup from "yup";
 
 import AppPicker from "../components/AppPicker";
@@ -10,6 +11,9 @@ import MealPickerItem from "../components/MealPickerItem";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 
 import defaultStyle from "../config/styles";
+
+import MealEditScreen from "./MealEditScreen";
+
 const mealTypes = [
   {
     label: "Breakfast",
@@ -86,7 +90,36 @@ const categories = [
 
 const validationSchema = Yup.object().shape({});
 
-function AddMealScreen(props) {
+const Stack = createStackNavigator();
+export const MealNavigator = () => (
+  <Stack.Navigator
+    initialRouteName="MealAddScreen"
+    screenOptions={{
+      headerStyle: { backgroundColor: defaultStyle.colors.primary },
+      headerTintColor: defaultStyle.colors.white,
+      headerShown: true,
+      headerTitleAlign: "center",
+      title: "100DaysOfWorkout",
+    }}
+  >
+    <Stack.Screen
+      name="MealAddScreen"
+      component={MealAddScreen}
+      options={{
+        title: "Add a meal",
+      }}
+    />
+    <Stack.Screen
+      name="MealEditScreen"
+      component={MealEditScreen}
+      options={{
+        title: "Edit a meal",
+      }}
+    />
+  </Stack.Navigator>
+);
+
+function MealAddScreen(props) {
   const [mealType, setMealType] = useState();
   const [category, setCategories] = useState();
 
@@ -134,4 +167,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddMealScreen;
+export default MealAddScreen;

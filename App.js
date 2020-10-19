@@ -35,13 +35,16 @@ import * as Permissions from "expo-permissions";
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
 import LoginScreen from "./app/screens/LoginScreen";
-import MealAddScreen from "./app/screens/MealAddScreen";
+import MealAddScreen, { MealNavigator } from "./app/screens/MealAddScreen";
 import MealEditScreen from "./app/screens/MealEditScreen";
 import MessagesScreen from "./app/screens/MessagesScreen";
 import MyAccountScreen from "./app/screens/MyAccountScreen";
 import RegisterScreen from "./app/screens/RegisterScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import WelcomeScreen, { WelcomeNavigator } from "./app/screens/WelcomeScreen";
+import WorkoutsScreen, {
+  WorkoutsNavigator,
+} from "./app/screens/WorkoutsScreen";
 
 import AppPicker from "./app/components/AppPicker";
 import AppText from "./app/components/AppText";
@@ -197,7 +200,7 @@ const TabNavigator = () => (
     />
     <Tab.Screen
       name="Add Meal"
-      component={MealAddScreen}
+      component={MealNavigator}
       options={{
         tabBarIcon: ({ size, color }) => (
           <FontAwesome5 name="plus" size={size} color={color} />
@@ -206,7 +209,7 @@ const TabNavigator = () => (
     />
     <Tab.Screen
       name="Workouts"
-      component={ListingsScreen}
+      component={WorkoutsNavigator}
       options={{
         tabBarIcon: ({ size, color }) => (
           <FontAwesome5 name="dumbbell" size={size} color={color} />
