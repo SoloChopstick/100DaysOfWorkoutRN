@@ -35,6 +35,8 @@ import * as Permissions from "expo-permissions";
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
 import LoginScreen from "./app/screens/LoginScreen";
+import MealAddScreen from "./app/screens/MealAddScreen";
+import MealEditScreen from "./app/screens/MealEditScreen";
 import MessagesScreen from "./app/screens/MessagesScreen";
 import MyAccountScreen from "./app/screens/MyAccountScreen";
 import RegisterScreen from "./app/screens/RegisterScreen";
@@ -184,11 +186,29 @@ const TabNavigator = () => (
       }}
     />
     <Tab.Screen
+      name="Today"
+      component={ListingsScreen}
+      options={{
+        tabBarIcon: ({ size, color }) => (
+          <FontAwesome5 name="calendar-day" size={size} color={color} />
+        ),
+      }}
+    />
+    <Tab.Screen
       name="Add Meal"
-      component={LoginScreen}
+      component={MealAddScreen}
       options={{
         tabBarIcon: ({ size, color }) => (
           <FontAwesome5 name="plus" size={size} color={color} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Workouts"
+      component={ListingsScreen}
+      options={{
+        tabBarIcon: ({ size, color }) => (
+          <FontAwesome5 name="dumbbell" size={size} color={color} />
         ),
       }}
     />

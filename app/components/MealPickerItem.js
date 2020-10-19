@@ -5,7 +5,7 @@ import AppText from "./AppText";
 import Icon from "./Icon";
 import PickerItem from "./PickerItem";
 
-function CategoryPickerItem({ item, onPress, iconFamily }) {
+function MealPickerItem({ item, onPress, iconFamily }) {
   return (
     <View style={styles.container}>
       <Icon
@@ -23,14 +23,14 @@ function CategoryPickerItem({ item, onPress, iconFamily }) {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    paddingHorizontal: 30,
-    paddingVertical: 15,
-    width: "33%",
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+    flexDirection: "row",
   },
   label: {
-    marginTop: 5,
+    marginLeft: 10,
     textAlign: "center",
   },
 });
 
-export default CategoryPickerItem;
+export default MealPickerItem;

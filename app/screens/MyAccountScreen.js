@@ -1,19 +1,24 @@
 import React from "react";
 import { StyleSheet, View, Image } from "react-native";
-import AppText from "../components/AppText";
-import Screen from "../components/Screen";
-import ListItem from "../components/ListItem";
 import { FlatList } from "react-native-gesture-handler";
-import colors from "../config/colors";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+import AppText from "../components/AppText";
 import Icon from "../components/Icon";
+import ListItem from "../components/ListItem";
 import ListItemSeparator from "../components/ListItemSeparator";
+import Screen from "../components/Screen";
+
+import colors from "../config/colors";
+import defaultStyles from "../config/styles";
 
 const menuItems = [
   {
     title: "My Listings",
     icon: {
-      name: "format-list-bulleted",
-      backgroundColor: colors.primary,
+      name: "list",
+      backgroundColor: "#4b7bec",
     },
   },
   {
@@ -27,17 +32,53 @@ const menuItems = [
     title: "About",
     icon: {
       name: "info",
-      backgroundColor: "blue",
+      backgroundColor: "#fd9644",
     },
   },
   {
     title: "Delete Account",
     icon: {
       name: "trash-alt",
-      backgroundColor: "red",
+      backgroundColor: "#fc5c65",
     },
   },
 ];
+
+const Stack = createStackNavigator();
+export const AccountNavigator = () => (
+  <Stack.Navigator
+    initialRouteName="WelcomeScreen"
+    screenOptions={{
+      headerStyle: { backgroundColor: defaultStyle.colors.primary },
+      headerTintColor: defaultStyle.colors.white,
+      headerShown: true,
+      headerTitleAlign: "center",
+      title: "100DaysOfWorkout",
+    }}
+  >
+    <Stack.Screen
+      name="WelcomeScreen"
+      options={{ headerShown: false }}
+      component={WelcomeScreen}
+    />
+    <Stack.Screen
+      name="LoginScreen"
+      options={{
+        headerShown: true,
+        title: "Log In",
+      }}
+      component={LoginScreen}
+    />
+    <Stack.Screen
+      name="RegisterScreen"
+      options={{
+        headerShown: true,
+        title: "Create Account",
+      }}
+      component={RegisterScreen}
+    />
+  </Stack.Navigator>
+);
 
 function MyAccountScreen(props) {
   return (
@@ -46,7 +87,7 @@ function MyAccountScreen(props) {
         <ListItem
           title="Han Solo"
           description="hanw.xie@gmail.com"
-          image={require("../assets/mosh.jpg")}
+          image={require("../assets/Han.jpg")}
         ></ListItem>
       </View>
       <View style={styles.container}>
@@ -76,7 +117,13 @@ function MyAccountScreen(props) {
       <View style={styles.container}>
         <ListItem
           title="Log Out"
-          IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
+          IconComponent={
+            <Icon
+              iconFamily="MaterialCommunityIcons"
+              name="logout"
+              backgroundColor="#ffe66d"
+            />
+          }
         ></ListItem>
       </View>
     </Screen>

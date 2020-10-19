@@ -8,7 +8,7 @@ import {
   Button,
   FlatList,
 } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons";
+import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import AppText from "./AppText";
 import Icon from "./Icon";
@@ -25,6 +25,7 @@ function AppPicker({
   PickerItemComponent = PickerItem,
   placeholder,
   selectedItem,
+  iconFamily = "FontAwesome5",
   ...otherProps
 }) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -58,6 +59,7 @@ function AppPicker({
           numColumns={numberOfColumns}
           renderItem={({ item }) => (
             <PickerItemComponent
+              iconFamily={iconFamily}
               item={item}
               onPress={() => {
                 setModalVisible(false);
