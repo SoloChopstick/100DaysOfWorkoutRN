@@ -8,17 +8,21 @@ function Icon({
   backgroundColor = colors.black,
   iconColor = colors.white,
   iconFamily = "FontAwesome5",
+  style,
 }) {
   return (
     <View
-      style={{
-        width: size,
-        height: size,
-        borderRadius: size / 2,
-        backgroundColor,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+      style={[
+        {
+          width: size,
+          height: size,
+          borderRadius: size / 2,
+          backgroundColor,
+          justifyContent: "center",
+          alignItems: "center",
+        },
+        style,
+      ]}
     >
       {iconFamily === "FontAwesome5" ? (
         <FontAwesome5 name={name} color={iconColor} size={size * 0.5} />
