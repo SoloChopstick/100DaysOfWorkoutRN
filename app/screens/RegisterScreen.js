@@ -3,7 +3,7 @@ import { Image, StyleSheet } from "react-native";
 
 import * as Yup from "yup";
 
-import { AppForm, AppFormField, SubmitButton } from "../components/forms";
+import { Form, FormField, SubmitButton } from "../components/forms";
 import Screen from "../components/Screen";
 
 const validationSchema = Yup.object().shape({
@@ -21,7 +21,7 @@ function RegisterScreen(props) {
   return (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require("../assets/logo.png")} />
-      <AppForm
+      <Form
         initialValues={{
           firstName: "",
           lastName: "",
@@ -32,23 +32,23 @@ function RegisterScreen(props) {
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        <AppFormField
+        <FormField
           name="firstName"
           autoCorrect={false}
           icon="account"
           placeholder="First Name"
           textContentType="givenName"
-        ></AppFormField>
+        ></FormField>
 
-        <AppFormField
+        <FormField
           name="lastName"
           autoCorrect={false}
           icon="account"
           placeholder="Last Name"
           textContentType="familyName"
-        ></AppFormField>
+        ></FormField>
 
-        <AppFormField
+        <FormField
           name="email"
           autoCapitalize="none"
           autoCorrect={false}
@@ -56,9 +56,9 @@ function RegisterScreen(props) {
           keyboardType="email-address"
           placeholder="Email"
           textContentType="emailAddress"
-        ></AppFormField>
+        ></FormField>
 
-        <AppFormField
+        <FormField
           name="password"
           autoCapitalize="none"
           autoCorrect={false}
@@ -66,9 +66,9 @@ function RegisterScreen(props) {
           placeholder="Password"
           secureTextEntry={true}
           textContentType="password"
-        ></AppFormField>
+        ></FormField>
 
-        <AppFormField
+        <FormField
           name="passwordConfirmation"
           autoCapitalize="none"
           autoCorrect={false}
@@ -76,9 +76,9 @@ function RegisterScreen(props) {
           placeholder="Confirm Password"
           secureTextEntry={true}
           textContentType="password"
-        ></AppFormField>
+        ></FormField>
         <SubmitButton title="Register" />
-      </AppForm>
+      </Form>
     </Screen>
   );
 }

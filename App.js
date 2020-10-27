@@ -242,32 +242,10 @@ export default function App() {
   const [firstName, setFirstName] = useState("");
   const [isNew, setIsNew] = useState(false);
   const [category, setCategory] = useState();
-
-  const [imageUris, setImageUris] = useState([]);
-
-  const handleAdd = (uri) => {
-    setImageUris([...imageUris, uri]);
-  };
-
-  const handleRemove = (uri) => {
-    setImageUris(imageUris.filter((imageUri) => imageUri !== uri));
-  };
   return (
-    <Screen>
-      {console.log(imageUris)}
-      <ImageInputList
-        imageUris={imageUris}
-        onAddImage={(uri) => handleAdd(uri)}
-        onRemoveImage={(uri) => handleRemove(uri)}
-      />
-    </Screen>
-    /*
-     */
-    /*
     <NavigationContainer>
       <TabNavigator />
     </NavigationContainer>
-    */
     /*
     <Screen>
       <Button title="Select Image" onPress={selectImage} />

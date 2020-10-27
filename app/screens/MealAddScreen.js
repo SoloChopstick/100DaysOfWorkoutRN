@@ -7,8 +7,9 @@ import * as Yup from "yup";
 
 import AppPicker from "../components/AppPicker";
 import CategoryPickerItem from "../components/CategoryPickerItem";
+import FormImagePicker from "../components/forms/FormImagePicker";
 import MealPickerItem from "../components/MealPickerItem";
-import { AppForm, AppFormField, SubmitButton } from "../components/forms";
+import { Form, FormField, SubmitButton } from "../components/forms";
 
 import defaultStyle from "../config/styles";
 
@@ -88,7 +89,13 @@ const categories = [
   },
 ];
 
-const validationSchema = Yup.object().shape({});
+const validationSchema = Yup.object().shape({
+  mealType: Yup.string().required(),
+  category: Yup.object().required().nullable(),
+  calories: Yup.number().required().min(1),
+  description: Yup.string(),
+  images: Yup.array().min(1, "Please select at least one image."),
+});
 
 const Stack = createStackNavigator();
 export const MealNavigator = () => (
@@ -145,18 +152,20 @@ function MealAddScreen(props) {
         selectedItem={category}
       ></AppPicker>
 
-      <AppForm
+      <Form
         initialValues={{
           calories: "",
           description: "",
+          images: [],
         }}
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        <AppFormField name="meal" placeholder="Calories" />
-        <AppFormField name="meal" placeholder="Description" />
+        <FormField name="meal" placeholder="Calories" />
+        <FormField name="meal" placeholder="Description" />
+        <FormImagePicker name="images" />
         <SubmitButton title="Post" />
-      </AppForm>
+      </Form>
     </Screen>
   );
 }
