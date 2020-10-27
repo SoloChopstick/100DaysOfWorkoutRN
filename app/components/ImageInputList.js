@@ -1,23 +1,37 @@
-import React from "react";
-import { View, StyleSheet, FlatList, Text } from "react-native";
+import React, { useRef } from "react";
+import { View, StyleSheet, ScrollView } from "react-native";
 import ImageInput from "./ImageInput";
 
-function ImageInputList(imageUris, onAddImage, onRemoveImage) {
+function ImageInputList({ imageUris = [], onAddImage, onRemoveImage }) {
+  const scrollView = useRef();
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={imageUris}
-        keyExtractor={(item) => item.uri}
-        renderItem={({ item }) => <ImageInput />}
-      ></FlatList>
-      <ImageInput />
-      <Text>YOLO</Text>
+    //View container b/c ScrollView will take the whole page,
+    //View only takes the amount its content will take
+    <View>
+      <ScrollView
+        ref={scrollView}
+        horizontal
+        onContentSizeChange={() => scrollView.current.scrollToEnd()}
+      >
+        <View style={styles.container}>
+          {imageUris.map((uri) => (
+            <View key={uri} style={styles.image}>
+              <ImageInput
+                imageUri={uri}
+                onChangeImage={() => onRemoveImage(uri)}
+              />
+            </View>
+          ))}
+          <ImageInput onChangeImage={(uri) => onAddImage(uri)} />
+        </View>
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { width: "100%", height: "75%" },
+  container: { flexDirection: "row" },
+  image: { marginRight: 10 },
 });
 
 export default ImageInputList;
