@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Screen } from "react-native-screens";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as Yup from "yup";
+import * as Location from "expo-location";
 
 import AppPicker from "../components/AppPicker";
 import CategoryPickerItem from "../components/CategoryPickerItem";
@@ -92,8 +93,8 @@ const categories = [
 const validationSchema = Yup.object().shape({
   mealType: Yup.string().required(),
   category: Yup.object().required().nullable(),
-  calories: Yup.number().required().min(1),
-  description: Yup.string(),
+  calories: Yup.number().required().min(1).label("Calories"),
+  description: Yup.string().label("Description"),
   images: Yup.array().min(1, "Please select at least one image."),
 });
 
@@ -127,8 +128,21 @@ export const MealNavigator = () => (
 );
 
 function MealAddScreen(props) {
+  const getLocation = async () => {
+    const { granted } = await Location.requestPermissionsAsync();
+    if (!granted) return;
+    const {
+      coords: { latitude, longitude },
+    } = await Location.getCurrentPositionAsync();
+    //result.coords.latitude
+    setLocation({ latitude, longitude });
+  };
+  useEffect(() => {
+    getLocation();
+  }, []);
   const [mealType, setMealType] = useState();
   const [category, setCategories] = useState();
+  const [location, setLocation] = useState();
 
   return (
     <Screen style={styles.container}>
@@ -161,8 +175,8 @@ function MealAddScreen(props) {
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        <FormField name="meal" placeholder="Calories" />
-        <FormField name="meal" placeholder="Description" />
+        <FormField name="calories" placeholder="Calories" />
+        <FormField name="description" placeholder="Description" />
         <FormImagePicker name="images" />
         <SubmitButton title="Post" />
       </Form>
