@@ -1,28 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
-  Button,
   Image,
   TouchableWithoutFeedback,
-  TouchableOpacity,
+  Alert,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import * as Permissions from "expo-permissions";
 
-import AppButton from "./AppButton";
 import Icon from "./Icon";
 
 import defaultStyle from "../config/styles";
 
-function ImageInput() {
-  const [imageUri, setImageUri] = useState();
+function ImageInput({ imageUri, onChangeImage }) {
+  useEffect(() => {
+    requestPermission();
+  }, []);
 
+  const requestPermission = async () => {
+    const result = await Permissions.askAsync(
+      Permissions.CAMERA_ROLL,
+      Permissions.CAMERA
+    );
+    if (!result.granted)
+      alert("You need to enable permission to access the library.");
+    /*
+    const result = await ImagePicker.requestCameraRollPermissionsAsync();
+    if (!result.granted)
+      alert("You need to enable permission to access the library.");
+      */
+  };
+  const handlePress = () => {
+    if (!imageUri) selectImage();
+    //How to delete using the change state function
+    else
+      Alert.alert("Delete", "Are you sure you want to delete this image?", [
+        {
+          text: "yes",
+          onPress: () => onChangeImage(null),
+        },
+        { text: "No" },
+      ]);
+  };
   const selectImage = async () => {
     try {
-      const result = await ImagePicker.launchCameraAsync();
+      const result = await ImagePicker.launchCameraAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        quality: 0.5,
+      });
       if (!result.cancelled) {
-        setImageUri(result.uri);
-        console.log(result.uri);
+        //calling parent to notify of change
+        onChangeImage(result.uri);
       }
     } catch (error) {
       console.log("Error reading an image", error);
@@ -30,28 +59,34 @@ function ImageInput() {
   };
 
   return (
-    <TouchableOpacity style={styles.container} onPress={selectImage}>
-      {imageUri === null ? (
-        <Icon
-          name="camera"
-          iconColor={defaultStyle.colors.medium}
-          backgroundColor={defaultStyle.colors.light}
-          size={100}
-          style={styles.icon}
-        />
-      ) : (
-        <Image source={{ uri: imageUri }} style={styles.icon} />
-      )}
-    </TouchableOpacity>
+    <TouchableWithoutFeedback onPress={handlePress}>
+      <View style={styles.container}>
+        {!imageUri ? (
+          <Icon
+            name="camera"
+            iconColor={defaultStyle.colors.medium}
+            backgroundColor={defaultStyle.colors.light}
+            size={50}
+            style={styles.icon}
+          />
+        ) : (
+          <Image source={{ uri: imageUri }} style={styles.icon} />
+        )}
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { width: 200, height: 200, borderRadius: 25 },
-  icon: {
+  container: {
     width: 100,
     height: 100,
     borderRadius: 25,
+    overflow: "hidden",
+  },
+  icon: {
+    width: 100,
+    height: 100,
   },
 });
 

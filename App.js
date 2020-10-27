@@ -52,6 +52,7 @@ import AppTextInput from "./app/components/AppTextInput";
 import CategoryPickerItem from "./app/components/CategoryPickerItem";
 import Card from "./app/components/Card";
 import ImageInput from "./app/components/ImageInput";
+import ImageInputList from "./app/components/ImageInputList";
 import ProfileImage from "./app/components/ProfileImage";
 import Screen from "./app/components/Screen";
 
@@ -242,44 +243,17 @@ export default function App() {
   const [isNew, setIsNew] = useState(false);
   const [category, setCategory] = useState();
 
-  const requestPermission = async () => {
-    const result = await Permissions.askAsync(
-      Permissions.CAMERA_ROLL,
-      Permissions.CAMERA
-    );
-    if (!result.granted)
-      alert("You need to enable permission to access the library.");
-    /*
-    const result = await ImagePicker.requestCameraRollPermissionsAsync();
-    if (!result.granted)
-      alert("You need to enable permission to access the library.");
-      */
-  };
-  //just like componentDitMount, b/c [] states will only run once
-  useEffect(() => {
-    requestPermission();
-  }, []);
-
   const [imageUri, setImageUri] = useState();
-  const selectImage = async () => {
-    try {
-      const result = await ImagePicker.launchCameraAsync();
-      if (!result.cancelled) {
-        setImageUri(result.uri);
-      }
-    } catch (error) {
-      console.log("Error reading an image", error);
-    }
-  };
 
   return (
     <Screen>
-      <ImageInput />
+      <ImageInput
+        imageUri={imageUri}
+        onChangeImage={(uri) => setImageUri(uri)}
+      />
     </Screen>
     /*
-          <Button title="Select Image" onPress={selectImage} />
-      <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
-      */
+     */
     /*
     <NavigationContainer>
       <TabNavigator />
