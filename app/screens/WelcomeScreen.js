@@ -8,60 +8,10 @@ import {
   Platform,
   StatusBar,
 } from "react-native";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-
-import LoginScreen from "./LoginScreen";
-import RegisterScreen from "./RegisterScreen";
 
 import AppButton from "../components/AppButton";
 
 import colors from "../config/colors";
-import defaultStyle from "../config/styles";
-
-/* --- STACK NAVIGATOR --- */
-const Stack = createStackNavigator();
-export const WelcomeNavigator = () => (
-  <Stack.Navigator
-    initialRouteName="WelcomeScreen"
-    screenOptions={{
-      headerStyle: { backgroundColor: defaultStyle.colors.primary },
-      headerTintColor: defaultStyle.colors.white,
-      headerShown: true,
-      headerTitleAlign: "center",
-      title: "100DaysOfWorkout",
-    }}
-  >
-    <Stack.Screen
-      name="WelcomeScreen"
-      options={{ headerShown: false }}
-      component={WelcomeScreen}
-    />
-    <Stack.Screen
-      name="LoginScreen"
-      options={{
-        headerShown: true,
-        title: "Log In",
-      }}
-      component={LoginScreen}
-    />
-    <Stack.Screen
-      name="RegisterScreen"
-      options={{
-        headerShown: true,
-        title: "Create Account",
-      }}
-      component={RegisterScreen}
-    />
-
-    {/*    <Stack.Screen
-      component={TweetDetails}
-      name="TweetDetails"
-      options={({ route }) => ({ title: route.params.id })}
-/>*/}
-  </Stack.Navigator>
-);
-/* --- STACK NAVIGATOR --- */
 
 function WelcomeScreen({ navigation }) {
   return (
@@ -81,12 +31,12 @@ function WelcomeScreen({ navigation }) {
         <AppButton
           title="LOGIN"
           color="primary"
-          onPress={() => navigation.navigate("LoginScreen")}
+          onPress={() => navigation.navigate("Login")}
         ></AppButton>
         <AppButton
           title="SIGN UP"
           color="secondary"
-          onPress={() => navigation.navigate("RegisterScreen")}
+          onPress={() => navigation.navigate("Register")}
         ></AppButton>
       </View>
     </ImageBackground>

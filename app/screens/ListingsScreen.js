@@ -1,44 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import Screen from "../components/Screen";
+import AppButton from "../components/AppButton";
 import Card from "../components/Card";
 import colors from "../config/colors";
 
-const listings = [
-  {
-    title: "Red Jacket for Sale",
-    subTitle: "100$",
-    quantity: 1,
-    image: require("../assets/jacket.jpg"),
-  },
-  {
-    title: "Poop",
-    subTitle: "200$",
-    quantity: 1,
-    image: require("../assets/jacket.jpg"),
-  },
-  {
-    title: "yolo",
-    subTitle: "200$",
-    quantity: 1,
-    image: require("../assets/jacket.jpg"),
-  },
-];
+import listingsApi from "../api/listings";
+
 function ListingsScreen(props) {
+  const [listings, setListings] = useState([]);
+  const [error, setError] = useState(false);
+
+  const loadListings = async () => {
+    const response = await listingsApi.getListings();
+    if (!response.ok) {
+      setError(true);
+      return;
+      //response.problem
+    }
+    setError(false);
+    setListings(response.data);
+  };
+  useEffect(() => {
+    loadListings();
+  }, []);
   return (
     <Screen style={styles.screen}>
-      <FlatList
-        data={listings}
-        keyExtractor={(listing) => listing.title}
-        renderItem={({ item }) => (
-          <Card
-            title={item.title}
-            subTitle={item.subTitle}
-            quantity={item.quantity}
-            image={item.image}
-          />
-        )}
-      ></FlatList>
+      {error ? (
+        <>
+          <AppText> Couldn't retrieve the listings.</AppText>
+          <AppButton title="Retry" onPress={loadListings} />
+        </>
+      ) : (
+        <FlatList
+          data={listings}
+          keyExtractor={(listing) => listing.title}
+          renderItem={({ item }) => (
+            <Card
+              title={item.title}
+              subTitle={item.subTitle}
+              quantity={item.quantity}
+              imageUrl={item.images[0].url}
+            />
+          )}
+        ></FlatList>
+      )}
     </Screen>
   );
 }

@@ -6,11 +6,15 @@ Compatible with Android and IOS
 
 ## Dependencies
 
-### React-Native
+### React-Native 3rd party libraries
 
-- @react-navigation/stack
 - @react-navigation/native
+- @react-navigation/stack
 - @react-navigation/bottom-tabs
+- react-native-gesture-handler
+- react-native-reanimated
+- react-native-screens
+- react-native-safe-area-context
 
 ### Expo
 

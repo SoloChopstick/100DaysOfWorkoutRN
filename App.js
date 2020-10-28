@@ -41,7 +41,6 @@ import MessagesScreen from "./app/screens/MessagesScreen";
 import MyAccountScreen from "./app/screens/MyAccountScreen";
 import RegisterScreen from "./app/screens/RegisterScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
-import WelcomeScreen, { WelcomeNavigator } from "./app/screens/WelcomeScreen";
 import WorkoutsScreen, {
   WorkoutsNavigator,
 } from "./app/screens/WorkoutsScreen";
@@ -58,6 +57,8 @@ import Screen from "./app/components/Screen";
 
 import colors from "./app/config/colors";
 import defaultStyles from "./app/config/styles";
+
+import AuthNavigator from "./app/navigation/AuthNavigator";
 
 const categories = [
   {
@@ -107,6 +108,8 @@ const categories = [
   },
 ];
 
+//used for child component to navigate
+//also if in child want to access stuff, need to useRoute() HOOK
 const Link = () => {
   const navigation = useNavigation();
   return (
@@ -128,6 +131,7 @@ const Tweets = ({ navigation }) => (
   </Screen>
 );
 
+//route gets access to the parameters
 const TweetDetails = ({ route }) => (
   <Screen>
     <Text> TweetDetails {route.params.id} </Text>
@@ -166,6 +170,7 @@ const StackNavigator = () => (
     <Stack.Screen
       component={TweetDetails}
       name="TweetDetails"
+      //Set title dynamically, must have parenthesis to return the object
       options={({ route }) => ({ title: route.params.id })}
     />
   </Stack.Navigator>
@@ -184,7 +189,7 @@ const TabNavigator = () => (
   >
     <Tab.Screen
       name="Home"
-      component={WelcomeNavigator}
+      component={AuthNavigator}
       options={{
         tabBarIcon: ({ size, color }) => (
           <FontAwesome5 name="home" size={size} color={color} />

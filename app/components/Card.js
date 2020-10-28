@@ -2,10 +2,10 @@ import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import colors from "../config/colors";
 import AppText from "./AppText";
-function Cart({ title, subTitle, quantity, image }) {
+function Cart({ title, subTitle, quantity, imageUrl }) {
   return (
     <View style={styles.card}>
-      <Image style={styles.image} source={image}></Image>
+      <Image style={styles.image} source={{ uri: imageUrl }}></Image>
       <View style={styles.textContainer}>
         <AppText style={styles.title}> {title} </AppText>
         <AppText style={styles.subTitle}> {subTitle} </AppText>
