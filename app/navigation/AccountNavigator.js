@@ -4,6 +4,7 @@ import MyAccountScreen from "../screens/MyAccountScreen";
 import MessagesScreen from "../screens/MessagesScreen";
 
 import defaultStyles from "../config/styles";
+import routes from "./routes";
 const Stack = createStackNavigator();
 
 const AccountNavigator = () => (
@@ -16,13 +17,19 @@ const AccountNavigator = () => (
     }}
   >
     <Stack.Screen
-      name="Account"
+      name={routes.ACCOUNT}
       component={MyAccountScreen}
       options={{
         title: "My Account",
       }}
     />
-    <Stack.Screen name="Messages" component={MessagesScreen} />
+    <Stack.Screen
+      name={routes.MESSAGES}
+      component={MessagesScreen}
+      options={{
+        title: "My Messages",
+      }}
+    />
   </Stack.Navigator>
 );
 

@@ -6,6 +6,7 @@ import AccountNavigator from "./AccountNavigator";
 import AuthNavigator from "./AuthNavigator";
 import MealNavigator from "./MealNavigator";
 import NewMealButton from "./NewMealButton";
+import routes from "./routes";
 
 import ProfileImage from "../components/ProfileImage";
 
@@ -19,13 +20,13 @@ const AppNavigator = () => (
   <Tab.Navigator
     tabBarOptions={{
       activeBackgroundColor: defaultStyles.colors.primary,
-      activeTintColor: "white",
+      activeTintColor: defaultStyles.colors.white,
       inactiveBackgroundColor: "#eee",
-      inactiveTintColor: "black",
+      inactiveTintColor: defaultStyles.colors.black,
     }}
   >
     <Tab.Screen
-      name="Home"
+      name={routes.HOME}
       component={AuthNavigator}
       options={{
         tabBarIcon: ({ size, color }) => (
@@ -34,7 +35,7 @@ const AppNavigator = () => (
       }}
     />
     <Tab.Screen
-      name="Today"
+      name={routes.TODAY}
       component={ListingsScreen}
       options={{
         tabBarIcon: ({ size, color }) => (
@@ -43,21 +44,23 @@ const AppNavigator = () => (
       }}
     />
     <Tab.Screen
-      name="Add Meal"
+      name={routes.NEW_MEAL}
       component={MealNavigator}
-      options={({ navigation }) => ({
-        tabBarButton: () => (
-          <NewMealButton onPress={() => navigation.navigate("Add Meal")} />
-        ),
-        /*
+      options={{
         tabBarIcon: ({ size, color }) => (
           <FontAwesome5 name="plus" size={size} color={color} />
         ),
-        */
+      }}
+      /*
+      options={({ navigation }) => ({
+        tabBarButton: () => (
+          <NewMealButton onPress={() => navigation.navigate(routes.NEW_MEAL)} />
+        ),
       })}
+      */
     />
     <Tab.Screen
-      name="Workouts"
+      name={routes.WORKOUTS}
       component={WorkoutsScreen}
       options={{
         tabBarIcon: ({ size, color }) => (
@@ -66,7 +69,7 @@ const AppNavigator = () => (
       }}
     />
     <Tab.Screen
-      name="Account"
+      name={routes.ACCOUNT}
       component={AccountNavigator}
       options={{
         tabBarIcon: ({ size, color }) => (
