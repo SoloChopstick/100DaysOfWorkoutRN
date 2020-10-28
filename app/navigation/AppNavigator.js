@@ -5,6 +5,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import AccountNavigator from "./AccountNavigator";
 import AuthNavigator from "./AuthNavigator";
 import MealNavigator from "./MealNavigator";
+import NewMealButton from "./NewMealButton";
 
 import ProfileImage from "../components/ProfileImage";
 
@@ -44,11 +45,16 @@ const AppNavigator = () => (
     <Tab.Screen
       name="Add Meal"
       component={MealNavigator}
-      options={{
+      options={({ navigation }) => ({
+        tabBarButton: () => (
+          <NewMealButton onPress={() => navigation.navigate("Add Meal")} />
+        ),
+        /*
         tabBarIcon: ({ size, color }) => (
           <FontAwesome5 name="plus" size={size} color={color} />
         ),
-      }}
+        */
+      })}
     />
     <Tab.Screen
       name="Workouts"
