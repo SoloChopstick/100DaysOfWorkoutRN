@@ -35,7 +35,6 @@ import * as Permissions from "expo-permissions";
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
 import LoginScreen from "./app/screens/LoginScreen";
-import MealAddScreen, { MealNavigator } from "./app/screens/MealAddScreen";
 import MealEditScreen from "./app/screens/MealEditScreen";
 import MessagesScreen from "./app/screens/MessagesScreen";
 import MyAccountScreen from "./app/screens/MyAccountScreen";
@@ -57,8 +56,10 @@ import Screen from "./app/components/Screen";
 
 import colors from "./app/config/colors";
 import defaultStyles from "./app/config/styles";
-
+import navigationTheme from "./app/navigation/navigationTheme";
 import AuthNavigator from "./app/navigation/AuthNavigator";
+import MealNavigator from "./app/navigation/MealNavigator";
+import AppNavigator from "./app/navigation/AppNavigator";
 
 const categories = [
   {
@@ -176,67 +177,6 @@ const StackNavigator = () => (
   </Stack.Navigator>
 );
 
-/* --- TAB NAVIGATOR --- */
-const Tab = createBottomTabNavigator();
-const TabNavigator = () => (
-  <Tab.Navigator
-    tabBarOptions={{
-      activeBackgroundColor: defaultStyles.colors.primary,
-      activeTintColor: "white",
-      inactiveBackgroundColor: "#eee",
-      inactiveTintColor: "black",
-    }}
-  >
-    <Tab.Screen
-      name="Home"
-      component={AuthNavigator}
-      options={{
-        tabBarIcon: ({ size, color }) => (
-          <FontAwesome5 name="home" size={size} color={color} />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name="Today"
-      component={ListingsScreen}
-      options={{
-        tabBarIcon: ({ size, color }) => (
-          <FontAwesome5 name="calendar-day" size={size} color={color} />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name="Add Meal"
-      component={MealNavigator}
-      options={{
-        tabBarIcon: ({ size, color }) => (
-          <FontAwesome5 name="plus" size={size} color={color} />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name="Workouts"
-      component={WorkoutsNavigator}
-      options={{
-        tabBarIcon: ({ size, color }) => (
-          <FontAwesome5 name="dumbbell" size={size} color={color} />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name="Account"
-      component={MyAccountScreen}
-      options={{
-        tabBarIcon: ({ size, color }) => (
-          //<FontAwesome5 name="user-alt" size={size} color={color} />
-          <ProfileImage image={require("./app/assets/Han.jpg")} size={size} />
-        ),
-      }}
-    />
-  </Tab.Navigator>
-);
-/* --- TAB NAVIGATOR --- */
-
 export default function App() {
   //console.log(Dimensions.get("screen"));
   //console.log(useDimensions());
@@ -248,8 +188,8 @@ export default function App() {
   const [isNew, setIsNew] = useState(false);
   const [category, setCategory] = useState();
   return (
-    <NavigationContainer>
-      <TabNavigator />
+    <NavigationContainer theme={navigationTheme}>
+      <MealNavigator />
     </NavigationContainer>
     /*
     <Screen>
