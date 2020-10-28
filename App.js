@@ -26,7 +26,11 @@ import {
 } from "@react-native-community/hooks";
 
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  useNavigation,
+  DarkTheme,
+} from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import * as ImagePicker from "expo-image-picker";
@@ -189,7 +193,7 @@ export default function App() {
   const [category, setCategory] = useState();
   return (
     <NavigationContainer theme={navigationTheme}>
-      <MealNavigator />
+      <AppNavigator />
     </NavigationContainer>
     /*
     <Screen>

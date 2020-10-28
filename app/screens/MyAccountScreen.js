@@ -15,11 +15,12 @@ import defaultStyles from "../config/styles";
 
 const menuItems = [
   {
-    title: "My Listings",
+    title: "My Messages",
     icon: {
       name: "list",
       backgroundColor: "#4b7bec",
     },
+    targetScreen: "Messages",
   },
   {
     title: "My Account",
@@ -44,43 +45,7 @@ const menuItems = [
   },
 ];
 
-const Stack = createStackNavigator();
-export const AccountNavigator = () => (
-  <Stack.Navigator
-    initialRouteName="WelcomeScreen"
-    screenOptions={{
-      headerStyle: { backgroundColor: defaultStyle.colors.primary },
-      headerTintColor: defaultStyle.colors.white,
-      headerShown: true,
-      headerTitleAlign: "center",
-      title: "100DaysOfWorkout",
-    }}
-  >
-    <Stack.Screen
-      name="WelcomeScreen"
-      options={{ headerShown: false }}
-      component={WelcomeScreen}
-    />
-    <Stack.Screen
-      name="LoginScreen"
-      options={{
-        headerShown: true,
-        title: "Log In",
-      }}
-      component={LoginScreen}
-    />
-    <Stack.Screen
-      name="RegisterScreen"
-      options={{
-        headerShown: true,
-        title: "Create Account",
-      }}
-      component={RegisterScreen}
-    />
-  </Stack.Navigator>
-);
-
-function MyAccountScreen(props) {
+function MyAccountScreen({ navigation }) {
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -103,6 +68,7 @@ function MyAccountScreen(props) {
                   backgroundColor={item.icon.backgroundColor}
                 />
               }
+              onPress={() => navigation.navigate(item.targetScreen)}
               ChevronComponent={
                 <Icon
                   name="chevron-right"

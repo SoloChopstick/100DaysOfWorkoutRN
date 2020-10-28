@@ -11,8 +11,8 @@ const Stack = createStackNavigator();
 const AuthNavigator = () => (
   <Stack.Navigator
     screenOptions={{
-      headerStyle: { backgroundColor: defaultStyles.colors.white },
-      headerTintColor: defaultStyles.colors.primary,
+      headerStyle: { backgroundColor: defaultStyles.colors.primary },
+      headerTintColor: defaultStyles.colors.white,
       headerTitleAlign: "center",
       title: "100DaysOfWorkout",
     }}
